@@ -40,10 +40,10 @@ public class LearnerController {
     @PostMapping(value = "/learners")
     public ResponseEntity CreateLearner(@RequestBody Learner learner){
         logger.info("posting learner " + learner);
-        learnerRepository.save(learner);
+        Learner result = learnerRepository.save(learner);
 
         final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(learner.id).toUri();
+                .buildAndExpand(result.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
 

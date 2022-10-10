@@ -16,8 +16,8 @@ import javax.persistence.Id;
 public class Learner {
     @Id
     @GeneratedValue
-    public long id;
-    public String name;
+    private long id;
+    private String name;
 
     public Learner(String name) {
         this.name = name;

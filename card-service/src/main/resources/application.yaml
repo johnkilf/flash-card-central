@@ -1,10 +1,13 @@
-server.port: 8000
 
-logging:
-  level:
-    org:
-      springframework:
-        jdbc.datasource.init.ScriptUtils: DEBUG
+server.port: 8100
+
+
+
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        jdbc.datasource.init.ScriptUtils: DEBUG
 spring:
   datasource:
     url: jdbc:h2:mem:testdb
@@ -13,7 +16,7 @@ spring:
       enabled: true
       path: /h2-console
   jpa:
-#    defer-datasource-initialization: true
+    defer-datasource-initialization: true
     show-sql: true
   data:
     jpa:

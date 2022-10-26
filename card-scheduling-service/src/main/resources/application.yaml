@@ -1,0 +1,32 @@
+server.port: 8200
+
+logging:
+  level:
+    org:
+      springframework:
+        jdbc.datasource.init.ScriptUtils: DEBUG
+
+
+spring:
+  application.name: card-scheduling
+  datasource:
+    url: jdbc:h2:mem:testdb
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
+
+management:
+  endpoint.health.probes.enabled: true
+  health:
+    livenessstate.enabled: true
+    readinessstateenabled: true
+
+

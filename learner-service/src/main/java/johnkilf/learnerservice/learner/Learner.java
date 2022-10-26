@@ -1,13 +1,13 @@
-package johnkilf.learnerservice;
+package johnkilf.learnerservice.learner;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @Entity
 public class Learner {
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "learner_id_seq")
     private long id;
     private String name;
 

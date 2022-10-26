@@ -1,5 +1,13 @@
 # flash-card-central
 
+
+# TODO
+2. Clean up commented out code
+3. Look up CORS
+4. Note about limiting new cards
+5. Note about not showing same card twice in a row
+6. Testing?
+
 ## Description
 
 Flash Card Central is a flash cards application to enable learning based on spaced repetition. The application is built with microservices and designed to be deployed to Kubernetes.

@@ -18,7 +18,7 @@ import javax.validation.constraints.NotEmpty;
 public class Card {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cardidgen")
+    @GeneratedValue(generator = "card_id_seq")
     private long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

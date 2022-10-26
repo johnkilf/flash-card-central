@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin(exposedHeaders = "Location")
 public class CardController {
 
     Logger logger = LoggerFactory.getLogger(CardController.class);
@@ -31,13 +33,20 @@ public class CardController {
         return ResponseEntity.of(cardRepository.findById(cardId));
     }
 
+    // Can request all cards in a deck, or can request specific card ids
     @GetMapping(value = "/decks/{deckId}/cards")
-    public List<Card> getCardsInDeck(@PathVariable long deckId){
+    public List<Card> queryCards(@PathVariable long deckId, @RequestParam(required = false) String id){
+        if(id == null){
+            return cardRepository.findByDeckId(deckId);
+        } else {
+            final List<Long> cardIds = Arrays.stream(id.split(",")).map(idString -> Long.parseLong(idString)).collect(
+                    Collectors.toList()
+            );
 
-        logger.info("getting cards for deck " + deckId);
-        List<Card> byDeckId = cardRepository.findByDeckId(deckId);
-        logger.info("cards gotten " + byDeckId.isEmpty() + " is empty");
-        return byDeckId;
+            return cardRepository.findCardsByIdList(deckId, cardIds).stream()
+                    .filter(card -> (card.getDeck().getId() == deckId))
+                    .collect(Collectors.toList());
+        }
     }
 
     @PostMapping(value = "decks/{deckId}/cards")

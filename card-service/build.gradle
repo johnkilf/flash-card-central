@@ -44,3 +44,7 @@ dependencyManagement {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+bootBuildImage{
+	imageName="notjohn/${project.name}:${project.version}"
+}

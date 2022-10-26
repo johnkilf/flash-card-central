@@ -24,3 +24,8 @@ spring:
         bootstrap-mode: default
 
 
+management:
+  endpoint.health.probes.enabled: true
+  health:
+    livenessstate.enabled: true
+    readinessstateenabled: true

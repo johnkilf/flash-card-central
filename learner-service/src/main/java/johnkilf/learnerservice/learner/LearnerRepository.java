@@ -1,8 +1,6 @@
-package johnkilf.learnerservice;
+package johnkilf.learnerservice.learner;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.math.BigDecimal;
 
 public interface LearnerRepository extends JpaRepository<Learner, Long> {
 }

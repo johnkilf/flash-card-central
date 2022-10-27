@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import moment from "moment";
 
 
 import userService from "../api/userService"; 

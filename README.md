@@ -4,7 +4,7 @@
 
 Flash Card Central is a flash cards application to enable learning based on spaced repetition. The application is built with microservices and designed to be deployed to Kubernetes.
 
-Unlike other flash card apps, such as Anki, where both the management of the cards and the learning is handled by a single user, Flash Card Central splits the responsibilities between *Teachers* who are responsible for the creation and management of Flash Cards and *Learners* who are the users of the Flash Cards.
+Unlike other popular flash card apps, such as Anki, which are primarily designed for self study, Flash Card Central is designed to be used by teachers and learners. *Teachers* are responsible for the creation and management of Flash Cards, while *Learners* are the ones who revise using the Flash Cards.
 
 * Teachers can create and assign flashcards to learners, track learner progress, and see stats related to individual cards (e.g. which cards are learners finding most difficult).
 * Learners review the flashcards assigned to them by the teacher based on a spaced repetition algorithm. 

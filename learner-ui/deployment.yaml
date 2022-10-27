@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  labels:
+    app: learner-ui
+  name: learner-ui
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: learner-ui
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: learner-ui
+    spec:
+      containers:
+        - image: notjohn/learner-ui:0.0.1-SNAPSHOT
+          imagePullPolicy: Always
+          name: learner-ui
+          envFrom:
+            - configMapRef:
+                name: learner-ui
+      restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: learner-ui
+  name: learner-ui
+  namespace: default
+spec:
+  ports:
+    - port: 3100
+      protocol: TCP
+      targetPort: 3100
+  selector:
+    app: learner-ui
+  sessionAffinity: None
+  type: LoadBalancer
+
+
+---
+
+apiVersion: v1
+data:
+  LEARNER_URI: http://learner
+  CARD_URI: http://card
+  CARD_SCHEDULING_URI: http://card-scheduling
+kind: ConfigMap
+metadata:
+  name: learner-ui
+  namespace: default
